@@ -11,7 +11,7 @@ output:
 
 ## Initial Project Ideas
 
-There are a couple of topics I wish to explore with this upcoming project. The following list entails some ideas...
+There are a couple of topics I wish to explore with this upcoming project. The following list entails some ideas. 
 
 1. Correlation between the usage of online dating apps and domestic violence cases reported. 
 2. Correlation between the availability of thrift stores and the number of colleges within counties across the US
