@@ -9,12 +9,20 @@ output:
 
 
 
-## Initial Project Ideas
+# Milestone 2: Proposal + Data 
 
-There are a couple of topics I wish to explore with this upcoming project. The following list entails some ideas. 
+Study question: Is residential mobility associated with a Democratic voting pattern?  
 
-1. Correlation between the usage of online dating apps and domestic violence cases reported. 
-2. Correlation between the availability of thrift stores and the number of colleges within counties across the US
-3. Literacy rates (or levels of education) and voting patterns in the US
+This study will compare voting patterns to the residential mobility of the individual to see if there’s a correlation between voting Democratic and moving to a different region than where the individual resided when they were 16.  
 
-Overall, I'm still open to different topics. After looking through the availability of data sets, I think I can narrow down my ideas. 
+My hypothesis is that those who reside in a different state than when they were 16 may vote more Democrat as they may have had more exposure to different viewpoints in the world, allowing them to see certain aspects of life in a better light. In addition, many people in the US move because of education and higher education is related to voting more Democrat than Republican in the US. Thus movement may be correlated with voting Democrat.  
+
+The explanatory variable in this study is the residential mobility of the participants. This variable is not currently a column in the data but I will mutate two variables to create this new variable. 
+
+The outcome variable is the individual's vote in the presidential election in 2016 - either for Hillery or Trump.  
+
+Because I will be looking to see if there is a correlation between voting Democratic and moving residential location since the participants were 16, if there is a strong positive correlation, the hypothesis would be supported. If there is a negative correlation or a very weak correlation, then the hypothesis would be rejected.  
+
+*** 
+
+Data being used: GSS data from 2021 [link](https://gss.norc.org/get-the-data) 
