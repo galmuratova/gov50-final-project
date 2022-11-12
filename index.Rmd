@@ -26,3 +26,43 @@ Because I will be looking to see if there is a correlation between voting Democr
 *** 
 
 Data being used: GSS data from 2021 [link](https://gss.norc.org/get-the-data) 
+
+```{r, echo = FALSE}
+library(haven)
+GSS2021 <- read_dta("~/Downloads/misc/2021_stata/GSS2021.dta")
+View(GSS2021)
+```
+
+```{r, echo = FALSE}
+library(tidyverse)
+library(infer)
+library(broom)
+```
+
+
+
+```{r, echo = FALSE}
+GSS <- GSS2021 |>
+  mutate(labels = case_when(reg16 == 1 ~ "New England",
+                            reg16 == 2 ~ "Middle Atlantic",
+                            reg16 == 3 ~ "East North Central",
+                            reg16 == 4 ~ "West North Central",
+                            reg16 == 5 ~ "South Atlantic",
+                            reg16 == 6 ~ "East South Atlantic",
+                            reg16 == 7 ~ "West South Central",
+                            reg16 == 8 ~ "Mountain",
+                            reg16 == 9 ~ "Pacific"))
+  
+```
+
+```{r, echo = FALSE}
+GSS |>
+  ggplot(mapping = aes(x = labels)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  labs(title = "Regions Participants Resided in When 16",
+       x = "Region in the US",
+       y = "Number of Participants")
+  
+```
+
