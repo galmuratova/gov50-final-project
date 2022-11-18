@@ -30,7 +30,6 @@ Data being used: GSS data from 2021 [link](https://gss.norc.org/get-the-data)
 ```{r, echo = FALSE}
 library(haven)
 GSS2021 <- read_dta("~/Downloads/misc/2021_stata/GSS2021.dta")
-View(GSS2021)
 ```
 
 ```{r, echo = FALSE}
@@ -39,8 +38,8 @@ library(infer)
 library(broom)
 ```
 
-
-
+*** 
+# Milestone 3: Visualizer
 ```{r, echo = FALSE}
 GSS <- GSS2021 |>
   mutate(labels = case_when(reg16 == 1 ~ "New England",
@@ -65,4 +64,37 @@ GSS |>
        y = "Number of Participants")
   
 ```
+***
 
+# Milestone 4: Visualizer + Model Fit Analysis 
+```{r, echo = FALSE}
+GSS <- GSS |>
+  mutate(mobile16a = if_else(mobile16 == 1 | mobile16 == 2, 0, 1), 
+         pres16a = if_else(pres16 == 1, 0, 1))
+GSS <- GSS |>
+    mutate(move16 = if_else(mobile16a == 0, "Same State", "Different State"), 
+         vote2016 = if_else(pres16a == 0, "Democrat Vote", "Non-Democrat Vote")) 
+
+residential_bar_plot <- GSS |>
+  drop_na(vote2016, move16) |>
+  ggplot(mapping = aes(x = vote2016)) +
+  geom_bar(mapping = aes(fill = move16)) +
+  labs(x = "Votes", 
+       y = "Count", 
+       title = "Relationship Between Residential Change and Voting Patterns", 
+       fill = "Residential State Change")
+
+residential_bar_plot
+```
+
+
+```{r, echo = FALSE}
+fit <- lm(pres16a ~ mobile16a, data = GSS) 
+coef(fit) |>
+  knitr::kable(col.names = c("Values"))
+
+```
+
+The model fit for the relationship between a change in state of residence from when the respondents were 16 and their presidential vote in 2016 is presented above. The data shows that when the respondent doesn't move, they are slightly more likely to have a non Democrat vote in the 2016 election. Moreover, if an individual has moved states between when they were 16 and at the time of answering the questionnaire, there is an increase in voting Democrat by 3.73% on average. 
+
+This model shows that there is a slight increase in chances of voting Democrat if one were to move from their home state at 16 years old; however, no conclusions can be made at this time as we do not know if this percentage is statistically significant. 
