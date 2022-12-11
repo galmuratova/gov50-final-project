@@ -50,7 +50,7 @@ GSS <- GSS |>
 ## **Final Report**
 
 ### Introduction 
-This study compares the voting patterns to the residential mobility of the individual to see if there’s a correlation between voting Democratic and moving to a different region than where the individual resided when they were 16. The following is the question of inquiry for this study: is residential mobility associated with a Democratic voting pattern?
+Voting patterns have been studied many different times. There's multiple different theories on what causes individuals to votea  a certain way. This study compares the voting patterns to the residential mobility of the individual to see if there’s a correlation between voting Democratic and moving to a different region than where the individual resided when they were 16. The following is the question of inquiry for this study: is residential mobility associated with a Democratic voting pattern?
 
 My hypothesis is that those who reside in a different state than when they were 16 may vote more Democrat as they may have had more exposure to different viewpoints in the world, allowing them to see certain aspects of life in a better light. In addition, many people in the US move because of education and higher education is related to voting more Democratic than Republican in the US. Thus movement may be correlated with voting Democrat. The explanatory variable in this study is the residential mobility of the participants. This variable is not currently a column in the data but I will mutate two variables to create this new variable. The outcome variable is the individual’s vote in the presidential election in 2016 - either for Democratic party or not. 
 
@@ -60,7 +60,7 @@ Because I will be looking to see if there is a correlation between voting Democr
 ### Description of Data and Research Design 
 This is not an experimental design as the data has already been collected and is not being resampled. Rather it is a cross sectional observational study about the relationship between relocating areas of residence since the respondent was 16 and whether they voted democrat. As a result, the control units are those who reside in the same state as where they resided when they were 16 years old. The treatment units are those who are residing in a different state from when they were 16. This will be the predictor variable in a linear regression model to fit the relationship between voting Democrat and relocating residency states. 
 
-The data used in this study is from the 2021 General Social Survey (GSS) which collects data from over 4,000 individuals through a survey online. The main variables of study are whether the individuals moved since 16 and  their vote as either Democratic or not in 2016. The following barplot summaries the dependent variable in this study - whether they voted Democrat or not in 2016. The histogram shows that there is a higher proportion of voters who voted Democrat in 2016 than Republican. 
+The data used in this study is from the 2021 General Social Survey (GSS) which collects data from over 4,000 individuals through a survey online. The main variables of study are whether the individuals moved since 16 and  their vote as either Democratic or not in 2016. The following bar plot summaries the dependent variable in this study - whether they voted Democrat or not in 2016. The histogram shows that there is a higher proportion of voters who voted Democrat in 2016 than Republican. 
 
 
 ```{r, echo = FALSE}
@@ -91,6 +91,7 @@ residential_bar_plot <- GSS |>
 residential_bar_plot
 ```
 
+
 ```{r, echo = FALSE}
 fit <- lm(pres16a ~ mobile16a, data = GSS) 
 fit3 <- lm(pres16a ~ mobile16a + raceacs1 + nateduc1, data = GSS) 
@@ -106,20 +107,18 @@ modelsummary::modelsummary(list(fit,fit3),
                            coef_map = var_labels,
                            gof_map = c("nobs", "r.squared", "adj.r.squared") )
 
-
-
 ```
 
 
-The model fit for the relationship between a change in state of residence from when the respondents were 16 and their presidential vote in 2016 is presented above. The data shows that when the respondent doesn't move, they are slightly more likely to have a Democrat vote in the 2016 election as the proportion of Democrat votes for when the individuals do not move is 47.4%. Moreover, if an individual has moved states between when they were 16 and at the time of answering the questionnaire, there is an increase in voting Democrat by 3.73% on average. 
+The model fit for the relationship between a change in state of residence from when the respondents were 16 and their presidential vote in 2016 is presented above. Model 1 that when the respondent doesn't move, they are slightly more likely to have a Democrat vote in the 2016 election as the proportion of Democrat votes for when the individuals do not move is 47.4%. Moreover, if individuals move states between when they were 16 and at the time of answering the questionnaire, there is an increase in voting Democrat by 3.73% on average. 
 
-The linear regression table shows that there is a slight increase in chances of voting Democrat if one were to move from their home state at 16 years old. However, since the p value is .08 which is greater than .05, the null hypothesis that there is no difference in voting patterns between those who relocate residency state from when they were 16 cannot be rejected at this time. The slight increase in voting Democrat for those who move states is most likely due to chance. 
+Model 1 shows that there is a slight increase in chances of voting Democrat if one were to move from their home state at 16 years old. However, since the p value is .08 which is greater than .05, the null hypothesis, that there is no difference in voting patterns between those who relocate residency state from when they were 16 and those who do not, cannot be rejected at this time. The slight increase in voting Democrat for those who move states is most likely due to chance. 
 
 The multiple regression table seems be a better predictor for voting patterns. With the predicting variables as residential state mobility since 2016, race of the respondent and their opinion on the federal budget for improvng the nation's education system, the model has a p value very close to 0, meaning that it very unlikely that the observed extremities in the data are due to chance. 
 
-This regression table estimates that when individuals do not move, when their race is  white, and when they believe that the national spending on education is about right, the proportion of Democratic votes is .33. Holding other predictors constant, when an individual believes that the national spending on education is too little, the proportion of Democrat votes increased by about .2 on average. Holding other predictors constant, when an individual believes that the national spending on education is too much, the proportion of Democrat votes decreases by about .31 on average. Holding other predictors constant, when the individual is white, the proportion of Democrat votes decreases by about .32 on average.  Holding other predictors constant, when the indivdual had not changed residential state since they were 16, Democrat voting proportion increases by about .06 on average. It's important to note that the t value is .03 which is greater than .01 so there is some chance that the extremities in this data are due to chance.
+This regression table estimates that when individuals do not move, when their race is  white, and when they believe that the national spending on education is about right, the proportion of Democratic votes is .33. Holding other predictors constant, when individuals believe that the national spending on education is too little, the proportion of Democrat votes increased by about .2 on average. Holding other predictors constant, when individuals believe that the national spending on education is too much, the proportion of Democrat votes decreases by about .31 on average. Holding other predictors constant, when individuals are white, the proportion of Democrat votes decreases by about .32 on average.  Holding other predictors constant, when the indivduals had not changed residential state since they were 16, Democrat voting proportion increases by about .06 on average. It's important to note that the t value is .03 for that variable which is greater than .01 so there is some chance that the extremities in this data are due to chance.
 
-Because the multiple regression model, Model 2, takes into account multiple explanatory variables, it account for some confounding variables. For example, perhaps individuals of a specific race move move often and they vote Democrat because of their race rather than their mobility. Thus, because Model 2 takes into account confounding variables and is statistically significant, it represents a causal relationship more than Model 1. 
+Because the multiple regression model, Model 2, takes into account multiple explanatory variables, it account for some confounding variables. For example, perhaps individuals of a specific race move move often and they vote Democrat because of their race rather than their mobility. Thus, because Model 2 takes into account confounding variables and is statistically significant, it represents a causal relationship more than Model 1. It is important to note that the sample size for Model 2 is smaller than that of Model 1 meaning that it is easier to produce statistical significance than Model 1. 
 
 
 ### Conclusion
